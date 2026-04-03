@@ -270,7 +270,7 @@
                     <input type="text" id="idInstance" placeholder="Например: 1101234567" value="">
                 </div>
                 <div class="cred-field">
-                    <label>⚙️ ApiTokenInstance</label>
+                    <label> ApiTokenInstance</label>
                     <input type="text" id="apiToken" placeholder="Ваш API токен" value="">
                 </div>
             </div>
@@ -349,7 +349,7 @@
     // Вспомогательная функция для добавления сообщения в поле ответа (только чтение)
     function appendToResponse(text, isError = false) {
         const timestamp = new Date().toLocaleTimeString('ru-RU', { hour12: false });
-        const prefix = isError ? `❌ [${timestamp}] ` : ` [${timestamp}] `;
+        const prefix = isError ? `[${timestamp}] ` : ` [${timestamp}] `;
         const formatted = prefix + text;
         // Сохраняем предыдущее содержимое и добавляем новую строку
         let current = responseArea.innerText;
@@ -423,7 +423,7 @@
         // Нормализация номера: удаляем лишние символы, оставляем цифры и плюс в начале (если есть)
         let cleanPhone = phone.replace(/[^0-9+]/g, '');
         if (!cleanPhone.startsWith('+') && !cleanPhone.startsWith('7') && !cleanPhone.startsWith('8')) {
-            // можно предупредить, но отправим как есть
+            
         }
         const url = `https://api.green-api.com/waInstance${idInstance}/sendMessage/${apiToken}`;
         const payload = {
@@ -527,8 +527,7 @@
         clearResponse();
     });
 
-    // Дополнительная проверка перед отправкой: можно подсказать пользователю про QR
-    // Для удобства сохраним последние введённые данные в localStorage (необязательно, но комфортно)
+    // Для удобства сохраним последние введённые данные в localStorage
     function loadStoredCreds() {
         try {
             const savedId = localStorage.getItem('greenapi_idInstance');
@@ -561,18 +560,6 @@
         inp.addEventListener('input', () => saveCreds());
     });
     loadStoredCreds();
-
-    // Пример заполнения примерами (если поля пустые, можно добавить подсказку, но не обязательно)
-    if (!idInstanceInput.value && !apiTokenInput.value) {
-        // Не заполняем автоматически мок-данными, чтобы не сбивать, но можно показать заметку
-        setTimeout(() => {
-            if (!idInstanceInput.value) {
-                // Ничего не делаем, пользователь введёт сам.
-            }
-        }, 100);
-    }
-
-    // Инициализация: доп. проверка, что инструкция видна.
     appendToResponse('Страница готова. Введите idInstance и ApiTokenInstance из личного кабинета GREEN-API.');
 </script>
 </body>
