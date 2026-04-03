@@ -11,8 +11,7 @@
 
 ## Демо
 
-🔗 **Живая страница:** []  ##TODO: завести github page
-
+🔗 **Живая страница:** [https://eenclaver.github.io/GREEN-API-Test-Client/] 
 ---
 
 ## Функциональность
@@ -48,7 +47,7 @@
 ### 2. Открыть страницу
 
 - Локально: скачайте `index.html` и откройте в браузере
-- Онлайн: перейдите по [] ##TODO: завести github page
+- Онлайн: перейдите по [https://eenclaver.github.io/GREEN-API-Test-Client/]
 
 ### 3. Ввести данные и тестировать
 
@@ -67,9 +66,9 @@
 
 ## Структура проекта
 
-  greenapi-test-client/
-  ├── index.html # Полная HTML-страница со стилями и скриптами
-  └── README.md # Документация
+  greenapi-test-client/  <br />
+  ├── index.html # Полная HTML-страница со стилями и скриптами  <br /> 
+  └── README.md # Документация <br />
 ---
 
 ## Используемые технологии
