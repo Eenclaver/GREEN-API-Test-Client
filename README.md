@@ -11,7 +11,7 @@
 
 ## Демо
 
-🔗 **Живая страница:** [https://eenclaver.github.io/GREEN-API-Test-Client/] 
+**Живая страница:** [https://eenclaver.github.io/GREEN-API-Test-Client/] 
 ---
 
 ## Функциональность
@@ -67,7 +67,7 @@
 ## Структура проекта
 
   greenapi-test-client/  <br />
-  ├── index.html # Полная HTML-страница со стилями и скриптами  <br /> 
+  ├── index.html # HTML-страница <br /> 
   └── README.md # Документация <br />
 ---
 

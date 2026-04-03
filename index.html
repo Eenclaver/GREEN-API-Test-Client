@@ -258,7 +258,7 @@
 <body>
 <div class="card">
     <div class="header">
-        <h1>📱 GREEN-API Консоль</h1>
+        <h1>GREEN-API Консоль</h1>
         <p>getSettings · getStateInstance · sendMessage · sendFileByUrl</p>
     </div>
     <div class="content">
@@ -266,8 +266,8 @@
         <div class="credentials">
             <div class="cred-row">
                 <div class="cred-field">
-                    <label>🔑 idInstance</label>
-                    <input type="text" id="idInstance" placeholder="例如: 1101234567" value="">
+                    <label>idInstance</label>
+                    <input type="text" id="idInstance" placeholder="Например: 1101234567" value="">
                 </div>
                 <div class="cred-field">
                     <label>⚙️ ApiTokenInstance</label>
@@ -275,21 +275,21 @@
                 </div>
             </div>
             <div style="font-size: 0.7rem; color: #4a627a; margin-top: 0.5rem;">
-                ℹ️ Вставьте данные из личного кабинета GREEN-API. Инстанс должен быть авторизован (QR-код отсканирован).
+                Вставьте данные из личного кабинета GREEN-API. Инстанс должен быть авторизован (QR-код отсканирован).
             </div>
         </div>
 
         <!-- Блок кнопок основных методов -->
         <div class="button-group">
-            <button class="btn btn-primary" id="getSettingsBtn">📟 getSettings</button>
-            <button class="btn btn-primary" id="getStateBtn">📊 getStateInstance</button>
-            <button class="btn btn-secondary" id="sendMessageBtn">💬 sendMessage</button>
-            <button class="btn btn-secondary" id="sendFileBtn">📎 sendFileByUrl</button>
+            <button class="btn btn-primary" id="getSettingsBtn">getSettings</button>
+            <button class="btn btn-primary" id="getStateBtn">getStateInstance</button>
+            <button class="btn btn-secondary" id="sendMessageBtn">sendMessage</button>
+            <button class="btn btn-secondary" id="sendFileBtn">sendFileByUrl</button>
         </div>
 
         <!-- Панели для ввода данных сообщения / URL файла -->
         <div class="message-panel">
-            <label>📨 Отправка текстового сообщения (sendMessage)</label>
+            <label>Отправка текстового сообщения (sendMessage)</label>
             <div class="flex-row">
                 <div class="flex-grow">
                     <input type="text" id="phoneNumber" placeholder="Номер получателя (пример: 79991234567)" value="">
@@ -301,7 +301,7 @@
         </div>
 
         <div class="message-panel" style="background:#edf4fa; border-left-color:#2c7da0;">
-            <label>🌐 Отправка файла по URL (sendFileByUrl)</label>
+            <label>Отправка файла по URL (sendFileByUrl)</label>
             <div class="flex-row">
                 <div class="flex-grow">
                     <input type="text" id="filePhone" placeholder="Номер получателя (пример: 79991234567)" value="">
@@ -313,19 +313,19 @@
                     <input type="text" id="fileName" placeholder="Имя файла (опционально)" value="document.pdf">
                 </div>
             </div>
-            <div style="font-size: 0.7rem; margin-top: 8px;">💡 Поддерживаются изображения, документы, аудио (до 15 МБ). Убедитесь, что URL доступен.</div>
+            <div style="font-size: 0.7rem; margin-top: 8px;"> Поддерживаются изображения, документы, аудио (до 15 МБ). Убедитесь, что URL доступен.</div>
         </div>
 
         <!-- Поле вывода ответов только для чтения -->
         <div class="response-label">
-            <span>📋 Ответ метода (только чтение)</span>
+            <span>Ответ метода (только чтение)</span>
             <button class="clear-btn" id="clearResponseBtn">Очистить лог</button>
         </div>
         <div class="response-area" id="responseArea" readonly>
             [Готов] Введите idInstance и ApiTokenInstance, затем нажмите на любой метод.
         </div>
         <footer>
-            ⚡ GREEN-API тестовый стенд | Для отправки убедитесь, что инстанс активен и номер авторизован.
+             GREEN-API тестовый стенд | Для отправки убедитесь, что инстанс активен и номер авторизован.
         </footer>
     </div>
 </div>
@@ -349,7 +349,7 @@
     // Вспомогательная функция для добавления сообщения в поле ответа (только чтение)
     function appendToResponse(text, isError = false) {
         const timestamp = new Date().toLocaleTimeString('ru-RU', { hour12: false });
-        const prefix = isError ? `❌ [${timestamp}] ` : `✅ [${timestamp}] `;
+        const prefix = isError ? `❌ [${timestamp}] ` : ` [${timestamp}] `;
         const formatted = prefix + text;
         // Сохраняем предыдущее содержимое и добавляем новую строку
         let current = responseArea.innerText;
@@ -388,7 +388,7 @@
         const { idInstance, apiToken } = cred;
         const baseUrl = `https://api.green-api.com/waInstance${idInstance}/${methodName}/${apiToken}`;
         try {
-            appendToResponse(`⏳ Вызов ${methodName}...`);
+            appendToResponse(`Вызов ${methodName}...`);
             const response = await fetch(baseUrl, {
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json' }
@@ -396,12 +396,12 @@
             const data = await response.json();
             const pretty = JSON.stringify(data, null, 2);
             if (response.ok) {
-                appendToResponse(`${methodName} ✅ Ответ: ${pretty}`);
+                appendToResponse(`${methodName} Ответ: ${pretty}`);
             } else {
-                appendToResponse(`${methodName} ❌ Ошибка ${response.status}: ${pretty}`, true);
+                appendToResponse(`${methodName} Ошибка ${response.status}: ${pretty}`, true);
             }
         } catch (err) {
-            appendToResponse(`${methodName} ❌ Сетевая ошибка: ${err.message}`, true);
+            appendToResponse(`${methodName} Сетевая ошибка: ${err.message}`, true);
         }
     }
 
@@ -431,7 +431,7 @@
             message: message
         };
         try {
-            appendToResponse(`💬 Отправка сообщения на ${cleanPhone}...`);
+            appendToResponse(`Отправка сообщения на ${cleanPhone}...`);
             const resp = await fetch(url, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -440,12 +440,12 @@
             const data = await resp.json();
             const pretty = JSON.stringify(data, null, 2);
             if (resp.ok && !data.error) {
-                appendToResponse(`sendMessage ✅ Успешно. Ответ: ${pretty}`);
+                appendToResponse(`sendMessage Успешно. Ответ: ${pretty}`);
             } else {
-                appendToResponse(`sendMessage ❌ Ошибка: ${pretty}`, true);
+                appendToResponse(`sendMessage Ошибка: ${pretty}`, true);
             }
         } catch (err) {
-            appendToResponse(`sendMessage ❌ Исключение: ${err.message}`, true);
+            appendToResponse(`sendMessage Исключение: ${err.message}`, true);
         }
     }
 
@@ -488,7 +488,7 @@
         };
         const urlApi = `https://api.green-api.com/waInstance${idInstance}/sendFileByUrl/${apiToken}`;
         try {
-            appendToResponse(`📤 Отправка файла по URL: ${fileName} → ${cleanPhone}`);
+            appendToResponse(`Отправка файла по URL: ${fileName} → ${cleanPhone}`);
             const resp = await fetch(urlApi, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -497,12 +497,12 @@
             const data = await resp.json();
             const pretty = JSON.stringify(data, null, 2);
             if (resp.ok && !data.error) {
-                appendToResponse(`sendFileByUrl ✅ Файл отправлен. Ответ: ${pretty}`);
+                appendToResponse(`sendFileByUrl Файл отправлен. Ответ: ${pretty}`);
             } else {
-                appendToResponse(`sendFileByUrl ❌ Ошибка: ${pretty}`, true);
+                appendToResponse(`sendFileByUrl Ошибка: ${pretty}`, true);
             }
         } catch (err) {
-            appendToResponse(`sendFileByUrl ❌ Сбой: ${err.message}`, true);
+            appendToResponse(`sendFileByUrl Сбой: ${err.message}`, true);
         }
     }
 
